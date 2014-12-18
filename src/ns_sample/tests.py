@@ -23,7 +23,7 @@ def test_parsing():
     storage.record = mock_record
     
     from io import StringIO
-    data = StringIO("Bob Smith\nFoo Bar\nFoobar McWumpus The 2nd\n")
+    data = StringIO("Bob Smith\nFoo Bar\nFoobar McWumpus The 2nd\n\n")
     
     storage.parse_file(data)
     assert parsed_data == [
@@ -74,3 +74,11 @@ def test_ignore_bad_category():
     assert not storage.pairset
     assert not any(storage.counts.values())
 
+def test_output_noerror():
+    storage = setup_storage()
+    from io import StringIO
+    data = StringIO("Bob Smith\nFoo Bar\nFoobar McWumpus The 2nd\n\n")
+    storage.parse_file(data)
+
+    storage.output_categories()
+    storage.output_pairs()

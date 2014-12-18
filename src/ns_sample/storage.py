@@ -39,6 +39,3 @@ class ThingStorage(object):
     def output_pairs(self):
         for category, subcategory in self.pairs:
             print("%s    %s" % (category, subcategory))
-
-                  
-                  
